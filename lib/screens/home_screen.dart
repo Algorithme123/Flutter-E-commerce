@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:go2shop/constante/global_colors.dart';
 import 'package:go2shop/widget/appbar_icons.dart';
+import 'package:go2shop/widget/feeds_widget.dart';
 import 'package:go2shop/widget/sale_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(.0),
           child: Column(
 
             children: [
@@ -89,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
               ),
-              const SizedBox(height: 8.0,),
+              const SizedBox(height: 18.0,),
               SizedBox(
                 height: size.height * 0.25,
 
@@ -109,13 +110,33 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               ),
+              Padding(
+                  padding: EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text(
+                      "Latest Products",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20
+                      ),
+                    ),
+                    const Spacer(),
+                    AppBarIcons(function: (){
+                    },
+                        icon: IconlyBold.arrowRight2)
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8.0,),
+              FeedsWidget(),
 
 
 
 
 
 
-          ],
+            ],
 
           ),
         )
