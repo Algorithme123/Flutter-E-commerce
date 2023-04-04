@@ -21,8 +21,14 @@ class _HomeScreenState extends State<HomeScreen> {
           title:  Text("Home"),
           leading: AppBarIcons(
             function: (){},
-            icon: IconlyBold.user3,
+            icon: IconlyBold.category,
           ),
+          actions: [
+            AppBarIcons(
+                function: (){},
+                icon: IconlyBold.user3,
+            ),
+          ],
         ),
         body: Center(
           child: Text("Bien venue"),
