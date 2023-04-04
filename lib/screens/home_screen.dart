@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:go2shop/constante/global_colors.dart';
 import 'package:go2shop/widget/appbar_icons.dart';
+import 'package:go2shop/widget/sale_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -84,8 +85,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     color:  lightIconsColor,)
                 ),
 
-              )
-            ],
+              ),
+              SizedBox(height: 10,),
+
+              SaleWidget()
+
+
+          ],
 
           ),
         )
