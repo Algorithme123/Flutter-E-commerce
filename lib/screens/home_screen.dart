@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: const Scaffold(
         body: Center(
-          child: Text("Bien venu"),
+          child: Text("Bien venue"),
         ),
       ),
     );
