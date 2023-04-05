@@ -10,7 +10,7 @@ class FeedsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return  Padding(
-        padding: EdgeInsets.all(2.0),
+        padding: EdgeInsets.all(8.0),
         child: Material(
           borderRadius: BorderRadius.circular(8.0),
           color: Theme.of(context).cardColor,
@@ -36,6 +36,7 @@ class FeedsWidget extends StatelessWidget {
                                 TextSpan(
                                   text: "200.00",
                                   style: TextStyle(
+                                    fontSize: 15,
                                     color: lightTextColor,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -76,9 +77,9 @@ class FeedsWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: size.height * 0.1,
-                )
+                // SizedBox(
+                //   height: size.height * 0.1,
+                // )
               ],
             ),
           ),
