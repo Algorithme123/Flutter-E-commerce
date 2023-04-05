@@ -2,9 +2,11 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:go2shop/constante/global_colors.dart';
+import 'package:go2shop/screens/feeds_screen.dart';
 import 'package:go2shop/widget/appbar_icons.dart';
 import 'package:go2shop/widget/feeds_widget.dart';
 import 'package:go2shop/widget/sale_widget.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -104,8 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           pagination: const SwiperPagination(
                               alignment: Alignment.bottomCenter,
-                              builder:
-                              DotSwiperPaginationBuilder(activeColor: Colors.red)),
+                              builder: DotSwiperPaginationBuilder(
+                                  activeColor: Colors.red)),
                           /* ------------------------------------------
                     control:  SwiperControl(), // pour les fleches
                     -------------------------------------------------*/
@@ -117,11 +119,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             const Text(
                               "Latest Products",
-                              style:
-                              TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 20),
                             ),
                             const Spacer(),
-                            AppBarIcons(function: () {}, icon: IconlyBold.arrowRight2)
+                            AppBarIcons(
+                                function: () {
+                                  Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: FeedsScreen(),
+                                      ));
+                                },
+                                icon: IconlyBold.arrowRight2)
                           ],
                         ),
                       ),
@@ -136,11 +147,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: 3,
                               gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 0.0,
-                                  mainAxisSpacing: 0.0,
-                                  childAspectRatio: 0.6),
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 0.0,
+                                      mainAxisSpacing: 0.0,
+                                      childAspectRatio: 0.6),
                               itemBuilder: (ctx, index) {
                                 return FeedsWidget();
                               })
