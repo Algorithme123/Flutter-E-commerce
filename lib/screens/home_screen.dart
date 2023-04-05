@@ -4,6 +4,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:go2shop/constante/global_colors.dart';
 import 'package:go2shop/screens/categories_screen.dart';
 import 'package:go2shop/screens/feeds_screen.dart';
+import 'package:go2shop/screens/users_screen.dart';
 import 'package:go2shop/widget/appbar_icons.dart';
 import 'package:go2shop/widget/feeds_widget.dart';
 import 'package:go2shop/widget/sale_widget.dart';
@@ -62,7 +63,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             AppBarIcons(
-              function: () {},
+              function: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: UserScreen(),
+                      ),
+                  );
+                },
               icon: IconlyBold.user3,
             ),
           ],
