@@ -88,7 +88,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 height: size.height * 0.4,
                 child: Swiper(
                   itemBuilder: (BuildContext context, int index){
-                    return FancyShimmerImage(imageUrl: "",
+                    return FancyShimmerImage(imageUrl: "https://i.ibb.co/vwB46Yq/shoes.png",
                       width: double.infinity,
                       boxFit: BoxFit.fill,
                     );

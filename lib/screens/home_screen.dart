@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:go2shop/constante/global_colors.dart';
+import 'package:go2shop/screens/categories_screen.dart';
 import 'package:go2shop/screens/feeds_screen.dart';
 import 'package:go2shop/widget/appbar_icons.dart';
 import 'package:go2shop/widget/feeds_widget.dart';
@@ -45,7 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Flexible(
                 child: AppBarIcons(
-                  function: () {},
+                  function: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: CategoriesScreen(),
+                        ));
+                  },
                   icon: IconlyBold.category,
                 ),
               ),
