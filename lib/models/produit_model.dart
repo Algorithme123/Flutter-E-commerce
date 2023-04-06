@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go2shop/models/category_model.dart';
 
-class ProduitModel {
+class ProduitModel with ChangeNotifier {
   int? id;
   String? title;
   int? price;
@@ -46,5 +47,13 @@ class ProduitModel {
       data['category'] = this.category!.toJson();
     }
     return data;
+  }
+
+
+  static List<ProduitModel> produitfromSnapShot (List produitSnapShot){
+
+    return produitSnapShot.map((data) {
+      return ProduitModel.fromJson(data);
+    }).toList();
   }
 }

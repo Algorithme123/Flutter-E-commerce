@@ -2,11 +2,13 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:go2shop/constante/global_colors.dart';
+import 'package:go2shop/models/produit_model.dart';
 import 'package:go2shop/screens/categories_screen.dart';
 import 'package:go2shop/screens/feeds_screen.dart';
 import 'package:go2shop/screens/users_screen.dart';
+import 'package:go2shop/services/api_handler.dart';
 import 'package:go2shop/widget/appbar_icons.dart';
-import 'package:go2shop/widget/feeds_widget.dart';
+import 'package:go2shop/widget/feeds_grid.dart';
 import 'package:go2shop/widget/sale_widget.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -19,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController _textEditingController;
+  // List<ProduitModel> listProduit = [];
 
   void initState() {
     _textEditingController = TextEditingController();
@@ -31,6 +34,20 @@ class _HomeScreenState extends State<HomeScreen> {
     _textEditingController.dispose();
     super.dispose();
   }
+
+  // @override
+  // void didChangeDependencies() {
+  //   getProduits();
+  //   // TODO: implement didChangeDependencies
+  //   super.didChangeDependencies();
+  // }
+  //
+  // Future<void> getProduits() async {
+  //   listProduit = await APIHandler.getAllProducts();
+  //   setState(() {
+  //
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,14 +81,14 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             AppBarIcons(
               function: () {
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        child: UserScreen(),
-                      ),
-                  );
-                },
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: UserScreen(),
+                  ),
+                );
+              },
               icon: IconlyBold.user3,
             ),
           ],
@@ -156,25 +173,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       /*----------------------------------------------------------
                     Pour que lr scrooller on doit entourer GridView par Expanded
                    -----------------------------------------------*/
+                  FutureBuilder<List<ProduitModel>>(
+                      future: APIHandler.getAllProducts(),
+                      builder: (context,snapShot){
+                        if(snapShot.connectionState == ConnectionState){
+                          return const Center(
+                          child: CircularProgressIndicator(),
+                          );
+                     }
+                        else if(snapShot.hasError){
 
-                      Column(
-                        children: [
-                          GridView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: 3,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 0.0,
-                                      mainAxisSpacing: 0.0,
-                                      childAspectRatio: 0.6),
-                              itemBuilder: (ctx, index) {
-                                return FeedsWidget();
-                              })
-                        ],
-                      )
-                    ],
+                            return  Center(
+                            child: Text("Erreur  ${snapShot.error}"),
+                            );}
+
+                        else if(snapShot.data == null){
+                            return  const Center(
+                            child: Text("Pas de Produit"),
+                            );
+}
+                        return FeedsGridWidget(listProduits: snapShot.data!);
+                        }
+                        ),
+        ],
                   ),
                 ),
               )

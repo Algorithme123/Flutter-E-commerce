@@ -2,14 +2,19 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:go2shop/constante/global_colors.dart';
+import 'package:go2shop/models/produit_model.dart';
 import 'package:go2shop/screens/product_details.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class FeedsWidget extends StatelessWidget {
   const FeedsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    final ProduitModel produitModelProvider = Provider.of<ProduitModel>(context);
+
     Size size = MediaQuery.of(context).size;
     return  Padding(
         padding: EdgeInsets.all(8.0),
@@ -44,7 +49,7 @@ class FeedsWidget extends StatelessWidget {
                               ),
                               children: <TextSpan>[
                                 TextSpan(
-                                  text: "200.00",
+                                  text: "${produitModelProvider.price}",
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: lightTextColor,
@@ -69,19 +74,19 @@ class FeedsWidget extends StatelessWidget {
                     color: Colors.red,
                     size: 28,
                     ),
-                    imageUrl: 'https://i.ibb.co/vwB46Yq/shoes.png',
+                    imageUrl: produitModelProvider.images![0],
                     boxFit: BoxFit.fill,
 
                   ),
                 ),
                 const SizedBox(height: 10 ,),
-                const Padding(
+                 Padding(
                     padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "Nom de l'article",
+                    produitModelProvider.title.toString(),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w700,
                     ),
