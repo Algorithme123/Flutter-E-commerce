@@ -24,4 +24,12 @@ class CategoriesModel {
     data['updatedAt'] = this.updatedAt;
     return data;
   }
+
+
+  static List<CategoriesModel> categoriefromSnapShot (List categorieSnapShot){
+
+    return categorieSnapShot.map((data) {
+      return CategoriesModel.fromJson(data);
+    }).toList();
+  }
 }
