@@ -1,4 +1,6 @@
-class CategoriesModel {
+import 'package:flutter/foundation.dart';
+
+class CategoriesModel  with ChangeNotifier{
   int? id;
   String? name;
   String? image;
